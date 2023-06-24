@@ -8,19 +8,18 @@
 <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
 <script type="text/babel">
     const root = document.querySelector("#root");
-    let counter = 0;
-    function countUp() { 
-        counter += 1; 
-        render();
-    }
-    function render() {
-        ReactDOM.render(<Container />, root);
-    }
-    const Container = () => (
-    <div>
-        <h3>Total clicks: {counter}</h3> 
-        <button onClick={countUp}>Click me</button>
-    </div> ); // 첫번째 글자는 반드시 대문자로 작성
-    render();
+    function App () {
+        const [counter, setCounter] = React.useState(0); // 생성과 동시에 배열에 변수명 할당
+        // state가 변경되면 컴포넌트(App) 전체가 리렌더링 됩니다.
+        const onClick = () => {
+            setCounter(counter + 1); // 데이터 값을 변경 후 자동으로 리렌더링
+        }
+        return (
+        <div>
+            <h3>Total clicks: {counter}</h3> 
+            <button onClick={onClick}>Click me</button>
+        </div> )
+    };
+    ReactDOM.render(<App />, root);
 </script>
 </html>
