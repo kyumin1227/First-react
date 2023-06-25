@@ -7,20 +7,34 @@
 <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
 <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
 <script type="text/babel">
-    const root = document.querySelector("#root");
     function App () {
-        const [counter, setCounter] = React.useState(0); // 생성과 동시에 배열에 변수명 할당
-        // state가 변경되면 컴포넌트(App) 전체가 리렌더링 됩니다.
-        const onClick = () => {
-            // setCounter(counter + 1); // 데이터 값을 변경 후 자동으로 리렌더링
-            setCounter((current) => current + 1); // 현재 state를 기준으로 계산
+        const [amount, setAmount] = React.useState(0); // [data, function]
+        const [flipped, setFlipped] = React.useState(false);
+        const onChange = (event) => {
+            setAmount(event.target.value);
+        };
+        const reset = () => setAmount(0);
+        const onFlip = () => {
+            setFlipped((current) => !current);
+            reset();
         }
         return (
         <div>
-            <h3>Total clicks: {counter}</h3> 
-            <button onClick={onClick}>Click me</button>
-        </div> )
+            <h1 className="hi">Super Converter</h1>
+            <div>
+                <label htmlFor="minutes">Minutes</label>
+                <input value={flipped ? amount * 60 : amount} // input의 값을 수정하기 위해 value를 지정
+                id="minutes" placeholder="Minutes" type="number" onChange={onChange} disabled={flipped} />
+            </div>
+            <div>
+                <label htmlFor="hours">Hours</label>
+                <input value={flipped ? amount : Math.round(amount/60)} id="hours" placeholder="Hours" type="number" onChange={onChange} disabled={!flipped} />
+            </div>
+            <button onClick={reset}>Reset</button>
+            <button onClick={onFlip}>Flip</button>
+            </div>)
     };
+    const root = document.querySelector("#root");
     ReactDOM.render(<App />, root);
 </script>
 </html>
