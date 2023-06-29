@@ -1,0 +1,9 @@
+.movies {
+    display: flex;
+    
+}
+
+.movies > div {
+    background-color: tomato;
+    width: 100px;
+}
