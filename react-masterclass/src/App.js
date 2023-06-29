@@ -7,6 +7,14 @@ const Father = styled.div`
   align-items: center;
 `;
 
+const Title = styled.h1`
+  color: ${(props) => props.theme.textColor};
+`;
+
+const Background = styled.div`
+  background-color: ${(props) => props.theme.backgroundColor};
+`;
+
 const animation = keyframes`
   0% {
     transform: rotate(0deg);
@@ -46,6 +54,9 @@ const Box = styled.div`
 function App() {
   return (
     <Father>
+      <Background>
+        <Title>Hello</Title>
+      </Background>
       <Box>
         <Emoji>😭</Emoji>
       </Box>
