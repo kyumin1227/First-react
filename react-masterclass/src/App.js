@@ -4,29 +4,32 @@ const Father = styled.div`
   display: flex;
 `;
 
-const BoxOne = styled.div`
-  background-color: teal;
+const Box = styled.div`
+// props를 이용한 속성 값 지정
+  background-color: ${(props) => props.bgColor};
   width: 100px;
   height: 100px;
 `;
 
-const BoxTwo = styled.div`
+// Box값을 상속 (기존 값 + 추가한 값)
+const Circle = styled(Box)`
+  border-radius: 50px;
+`;
+
+const Btn = styled.button`
   background-color: tomato;
-  width: 100px;
-  height: 100px;
-`;
-
-const Text = styled.span`
   color: white;
-`;
+  border: 0;
+  border-radius: 15px;
+`
+
+
 
 function App() {
   return (
     <Father>
-      <BoxOne>
-        <Text>Hello</Text>
-      </BoxOne>
-      <BoxTwo />
+      <Btn>Log in</Btn>
+      <Btn as="a" href="/">Log in</Btn>
     </Father>
   );
 }
